@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "ecommerce-web.fullname" . }}
+data:
+  CANONICAL_URL: "https://{{ .Values.hostname }}/"
+  OAUTH2_AUTH_URL: "{{ .Values.hydra.public_endpoint }}/oauth2/auth"
+  OAUTH2_PUBLIC_LOGOUT_URL: "{{ .Values.hydra.public_endpoint }}/oauth2/sessions/logout"
+  OAUTH2_TOKEN_URL: "{{ .Values.hydra.public_endpoint }}/oauth2/token"
+  OAUTH2_CLIENT_ID: "{{ .Values.ouath2.client_id }}"
+  PORT: "80"
+  SESSION_MAX_AGE_MS: "2592000000"
+  STRIPE_PUBLIC_API_KEY: "{{ .Values.stripe.public_key }}"
+  PRIMARY_SHOP_ID: "{{ .Values.primary_shop_id }}"
+  {{- if .Values.firebase.enabled -}}
+  GOOGLE_APPLICATION_CREDENTIALS: "{{ .Values.firebase.service_account_path }}"
+  FIREBASE_DATABASE_URL: "{{ .Values.firebase.database_url }}"
+  {{- end }}
