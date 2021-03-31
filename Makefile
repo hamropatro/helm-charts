@@ -1,10 +1,10 @@
-.PHONY: clean release
+.PHONY: clean build release
 
 clean:
 	rm -rf build/
 
 # Build all the packages
-build:
+build:		
 	mkdir build;
 	find charts -type d -depth 1 -exec helm package {} -d build \;
 
@@ -19,7 +19,8 @@ index: build
 release: clean lint build index
 	cp README.md build/
 	cd build
-	git checkout build
+	git branch --delete build
+	git checkout -b build
 	git add -f build/
 	git commit -m "Publish repo"
 	git push -fu origin build

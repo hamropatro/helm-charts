@@ -1,0 +1,35 @@
+{{- if .Values.persistence.enabled -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: 
+  name: {{ include "tusd.fullname" . }}-pvc
+spec: 
+  volumeMode: Filesystem
+  accessModes: 
+    - ReadWriteOnce
+  resources: 
+    requests: 
+      storage: {{ .Values.persistence.size }}
+  volumeName: {{ include "tusd.fullname" . }}-pv
+  {{- if .Values.persistence.storageClassName }}
+  storageClassName: {{ .Values.persistence.storageClassName }}
+  {{- end }}
+{{- end }}
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ include "tusd.fullname" . }}-pv
+  labels:
+    type: local
+spec:
+  {{- if .Values.persistence.storageClassName }}
+  storageClassName: {{ .Values.persistence.storageClassName }}
+  {{- end }}
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/{{ include "tusd.fullname" . }}-data"
