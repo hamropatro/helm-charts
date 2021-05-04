@@ -33,15 +33,46 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: CANONICAL_URL
+              value: "https://{{ .Values.hostname }}/"
+            - name: OAUTH2_AUTH_URL
+              value: "{{ .Values.hydra.public_endpoint }}/oauth2/auth"
+            - name: OAUTH2_PUBLIC_LOGOUT_URL
+              value: "{{ .Values.hydra.public_endpoint }}/oauth2/sessions/logout"
+            - name: OAUTH2_TOKEN_URL
+              value: "{{ .Values.hydra.public_endpoint }}/oauth2/token"
+            - name: OAUTH2_CLIENT_ID
+              value: {{ .Values.ouath2.client_id | quote }}
+            - name: OAUTH2_ADMIN_URL
+              value: {{ .Values.hydra.admin_endpoint | quote }}
+            - name: OAUTH2_CLIENT_SECRET
+              value: {{ .Values.ouath2.client_secret | quote }}
+            - name: SESSION_SECRET
+              value: {{.Values.session.secret | quote }}
+            - name: PORT
+              value: "80"
+            - name: SESSION_MAX_AGE_MS
+              value: "2592000000"
+            - name: API_URL
+              value: {{ .Values.reaction.api_url | quote }}
+            {{- if .Values.firebase.enabled }}
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: "/config/service-account"
+            - name: FIREBASE_DATABASE_URL
+              value: "{{ .Values.firebase.database_url }}"
+            {{- end }}
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $key}}
+              value: {{ $value}}
+            {{- end }}
           ports:
             - name: http
               containerPort: 80
               protocol: TCP
-          envFrom:
-          - configMapRef: 
-              name: {{ include "ecommerce-web.fullname" . }}
-          - secretRef:
-              name: {{ include "ecommerce-web.fullname" . }}
+          volumeMounts:
+            - mountPath: /config
+              name: firebase
           livenessProbe:
             httpGet:
               path: /
@@ -64,3 +95,8 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+    
+      volumes:
+        - name: firebase
+          configMap: 
+            name: {{ include "ecommerce-web.fullname" . }}
