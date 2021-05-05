@@ -64,7 +64,7 @@ spec:
             {{- end }}
             {{- range $key, $value := .Values.env }}
             - name: {{ $key}}
-              value: {{ $value}}
+              value: {{ $value | quote}}
             {{- end }}
           ports:
             - name: http
