@@ -6,11 +6,11 @@ clean:
 # Build all the packages
 build:		
 	mkdir build;
-	find charts -type d -depth 1 -exec helm package {} -d build \;
+	cd charts; find . -maxdepth 1 -type d -exec bash -c "helm package {} -d ../build" \;
 
 # Build all the packages
 lint:
-	find charts -type d -depth 1 -exec bash -c "cd {} && helm lint" \;
+	cd charts; find . -maxdepth 1 -type d -exec bash -c "cd {} && helm lint" \;
 
 # Create index after building all the packages
 index: build
@@ -19,7 +19,7 @@ index: build
 release: clean lint build index
 	cp README.md build/
 	cd build
-	git branch --delete build
+	git branch -D build
 	git checkout -b build
 	git add -f build/
 	git commit -m "Publish repo"
