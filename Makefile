@@ -16,6 +16,8 @@ lint:
 index: build
 	helm repo index build/
 
+deploy: release
+publish: release
 release: clean lint build index
 	cp README.md build/
 	cd build
