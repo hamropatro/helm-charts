@@ -47,6 +47,11 @@ service:
   port: 80
   targetPort: 80
 
+monitoring:
+  serviceMonitor:
+    enabled: false
+    additionalLabel: {}
+
 ingress:
   enabled: false
   className: ""
