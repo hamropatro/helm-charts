@@ -39,9 +39,11 @@ securityContext: {}
 liveness:
   path: /
   port: http
+  timeoutSeconds: 1
 readiness:
   port: http
   path: /
+  timeoutSeconds: 1
 service:
   type: ClusterIP
   port: 80

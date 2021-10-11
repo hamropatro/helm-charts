@@ -48,10 +48,12 @@ spec:
             httpGet:
               path: {{ .Values.liveness.path }}
               port: {{ .Values.liveness.port }}
+            timeoutSeconds: {{ .Values.liveness.timeoutSeconds }}
           readinessProbe:
             httpGet:
               path: {{ .Values.readiness.path }}
               port: {{ .Values.readiness.port }}
+            timeoutSeconds: {{ .Values.readiness.timeoutSeconds }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
