@@ -36,6 +36,12 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+liveness:
+  path: /
+  port: http
+readiness:
+  port: http
+  path: /
 service:
   type: ClusterIP
   port: 80
