@@ -13,8 +13,9 @@ spec:
       {{- include "tusd.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
+        backup.velero.io/backup-volumes: uploads-data
+      {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
@@ -67,7 +68,7 @@ spec:
       volumes:
         - name: uploads-data
           persistentVolumeClaim:
-            claimName: {{ include "tusd.fullname" . }}-pvc
+            claimName: {{ .Values.persistence.volumeClaim }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
