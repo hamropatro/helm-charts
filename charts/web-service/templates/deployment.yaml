@@ -44,16 +44,20 @@ spec:
             - name: http
               containerPort: {{ .Values.service.targetPort}}
               protocol: TCP
+          {{- if .Values.liveness.enabled }}
           livenessProbe:
             httpGet:
               path: {{ .Values.liveness.path }}
               port: {{ .Values.liveness.port }}
             timeoutSeconds: {{ .Values.liveness.timeoutSeconds }}
+          {{- end }}
+          {{- if .Values.readiness.enabled }}
           readinessProbe:
             httpGet:
               path: {{ .Values.readiness.path }}
               port: {{ .Values.readiness.port }}
             timeoutSeconds: {{ .Values.readiness.timeoutSeconds }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

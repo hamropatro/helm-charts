@@ -37,10 +37,12 @@ securityContext: {}
   # runAsUser: 1000
 
 liveness:
+  enabled: true
   path: /
   port: http
   timeoutSeconds: 1
 readiness:
+  enabled: true
   port: http
   path: /
   timeoutSeconds: 1
