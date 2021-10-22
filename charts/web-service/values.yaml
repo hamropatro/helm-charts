@@ -51,7 +51,7 @@ service:
   port: 80
   targetPort: 80
 
-monitoring:
+metrics:
   serviceMonitor:
     enabled: false
     additionalLabel: {}

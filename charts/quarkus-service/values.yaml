@@ -39,6 +39,11 @@ service:
   type: ClusterIP
   port: 80
 
+metrics:
+  serviceMonitor:
+    enabled: false
+    additionalLabel: {}
+
 ingress:
   enabled: false
   className: ""

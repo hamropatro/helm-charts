@@ -1,4 +1,4 @@
-{{- if .Values.monitoring.serviceMonitor.enabled }}
+{{- if .Values.metrics.serviceMonitor.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -6,8 +6,8 @@ metadata:
   labels:
     app.kubernetes.io/name: {{ template "web-service.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
-    {{- if .Values.monitoring.serviceMonitor.additionalLabels }}
-    #   {{ toYaml .Values.monitoring.serviceMonitor.additionalLabels | indent 4 }}
+    {{- if .Values.metrics.serviceMonitor.additionalLabels }}
+    #   {{ toYaml .Values.metrics.serviceMonitor.additionalLabels | indent 4 }}
     {{- end }}
   namespace: {{ .Release.Namespace }}
 spec:
