@@ -40,6 +40,8 @@ spec:
           env:
             - name: QUARKUS_HTTP_PORT
               value: "80"
+            - name: QUARKUS_JAEGER_SERVICE_NAME
+              value: "{{ .Release.Name }}"
             {{- range $key, $value := .Values.env }}
             - name: {{ $key}}
               value: {{ $value | quote}}
