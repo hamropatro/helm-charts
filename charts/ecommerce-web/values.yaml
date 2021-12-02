@@ -22,6 +22,8 @@ firebase:
 env:
   HELLO: WORLD
 
+args: []
+command: []
 # Default values for ecommerce-web.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.

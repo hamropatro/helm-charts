@@ -33,14 +33,14 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- if .Values.args }}
+          {{- with .Values.args }}
           args: 
-            {{- toYaml .Values.args | nindent 12 }}
-          {{-end }}
-          {{- if .Values.command }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.command }}
           args: 
-            {{- toYaml .Values.command | nindent 12 }}
-          {{-end }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           env:
             - name: CANONICAL_URL
               value: "https://{{ .Values.hostname }}/"
