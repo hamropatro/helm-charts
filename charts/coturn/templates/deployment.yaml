@@ -32,7 +32,14 @@ spec:
         - name: "coturn"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          args: ["-c", "/etc/turnserver.conf"]
+          {{- with .Values.args }}
+          args: 
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.command }}
+          args: 
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           ports:
             - name: turn-udp
               containerPort: 3478
