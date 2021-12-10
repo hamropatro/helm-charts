@@ -20,7 +20,6 @@ firebase:
   service_account: ""
 
 env:
-  HELLO: WORLD
 
 args: []
 command: []
