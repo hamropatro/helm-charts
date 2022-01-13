@@ -39,17 +39,27 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
-tls:
+http:
   enabled: false
+  port: 8080
+grpc:
+  enabled: false
+  port: 50051
+grpcs:
+  enabled: false
+  port: 50052
+  tlsSecret: ""
 tlsroute:
   enabled: false
   snis: []
 liveness:
   enabled: true
+  path: ""
   command: []
   timeoutSeconds: 1
 readiness:
   enabled: true
+  path: ""
   command: []
   timeoutSeconds: 1
 service:

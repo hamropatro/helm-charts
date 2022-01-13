@@ -23,5 +23,5 @@ spec:
         {{- end }}
       forwardTo:
         - serviceName: {{ $fullName }}
-          port: {{ add1 .Values.service.targetPort }}
+          port: {{ .Values.grpcs.port }}
 {{- end }}

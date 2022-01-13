@@ -4,8 +4,8 @@ metadata:
   name: {{ include "grpc-service.fullname" . }}
   {{- with .Values.deploymentAnnotations }}
   annotations:
-  {{- if .Values.tls.enabled }}
-    secret.reloader.stakater.com/reload: "{{ .Values.tls.secret }}"
+  {{- if .Values.grpcs.enabled }}
+    secret.reloader.stakater.com/reload: "{{ .Values.grpcs.tlsSecret }}"
   {{- end }}
     {{- toYaml . | nindent 4 }}
   {{- end }}
@@ -34,7 +34,7 @@ spec:
       serviceAccountName: {{ include "grpc-service.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      {{- if .Values.tls.enabled }}
+      {{- if .Values.grpcs.enabled }}
       initContainers:
         - name: init-tls
           image: docker.io/nginx
@@ -49,6 +49,7 @@ spec:
               mountPath: /config
             - name: secret
               mountPath: /tls
+              readOnly: true
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
@@ -69,7 +70,7 @@ spec:
             - name: {{ $key}}
               value: {{ $value | quote}}
             {{- end }}
-          {{- if .Values.tls.enabled }}
+          {{- if .Values.grpcs.enabled }}
             - name: TLS_ENABLED
               value: "true"
             - name: TLS_CERT
@@ -78,13 +79,20 @@ spec:
               value: /config/tls.pkcs8
           {{- end }}
           ports:
+          {{- if .Values.http.enabled }}
+            - protocol: TCP
+              name: http
+              containerPort: {{ .Values.http.port }}
+          {{- end }}
+          {{- if .Values.grpc.enabled }}
             - protocol: TCP
               name: grpc
-              containerPort: {{ .Values.service.targetPort}}
-          {{- if .Values.tls.enabled }}
+              containerPort: {{ .Values.grpc.port }}
+          {{- end }}
+          {{- if .Values.grpcs.enabled }}
             - protocol: TCP
               name: grpcs
-              containerPort: {{ add1 .Values.service.targetPort }}
+              containerPort: {{ .Values.grpcs.port }}
           {{- end }}
           volumeMounts:
             - name: config
@@ -92,20 +100,30 @@ spec:
               readOnly: true
           {{- if .Values.liveness.enabled }}
           livenessProbe:
+            {{- with .Values.liveness.command }}
             exec:
-              {{- with .Values.liveness.command }}
               command: 
                 {{- toYaml . | nindent 16 }}
-              {{- end }}
+            {{- end }}
+            {{- if .Values.liveness.path }}
+            httpGet:
+              path: {{ .Values.liveness.path }}
+              port: {{ .Values.http.port }}
+            {{- end }}
             timeoutSeconds: {{ .Values.liveness.timeoutSeconds }}
           {{- end }}
           {{- if .Values.readiness.enabled }}
           readinessProbe:
+            {{- with .Values.readiness.command }}
             exec:
-              {{- with .Values.liveness.command }}
               command: 
                 {{- toYaml . | nindent 16 }}
-              {{- end }}
+            {{- end }}
+            {{- if .Values.readiness.path }}
+            httpGet:
+              path: {{ .Values.readiness.path }}
+              port: {{ .Values.readiness.port }}
+            {{- end }}
             timeoutSeconds: {{ .Values.readiness.timeoutSeconds }}
           {{- end }}
           resources:
@@ -113,10 +131,10 @@ spec:
       volumes:
         - name: config
           emptyDir: {}
-        {{- if .Values.tls.enabled }}
+        {{- if .Values.grpcs.enabled }}
         - name: secret
           secret:
-            secretName: {{ .Values.tls.secret }}
+            secretName: {{ .Values.grpcs.tlsSecret }}
         {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:

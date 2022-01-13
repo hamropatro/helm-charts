@@ -7,13 +7,22 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
+    {{- if .Values.http.enabled }}
+    - port: {{ .Values.http.port }}
+      protocol: TCP
+      targetPort: http
+      name: http
+      appProtocol: http
+    {{- end }}
+    {{- if .Values.grpc.enabled }}
+    - port: {{ .Values.grpc.port }}
       protocol: TCP
       targetPort: grpc
       name: grpc
       appProtocol: http
-    {{- if .Values.tls.enabled }}
-    - port: {{ add1 .Values.service.port }}
+    {{- end }}
+    {{- if .Values.grpcs.enabled }}
+    - port: {{ .Values.grpcs.port }}
       protocol: TCP
       targetPort: grpcs
       name: grpcs
