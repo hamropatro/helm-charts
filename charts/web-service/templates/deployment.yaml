@@ -61,6 +61,8 @@ spec:
             httpGet:
               path: {{ .Values.liveness.path }}
               port: {{ .Values.liveness.port }}
+            initialDelaySeconds: {{ .Values.liveness.initialDelaySeconds }}
+            periodSeconds: {{ .Values.liveness.periodSeconds }}
             timeoutSeconds: {{ .Values.liveness.timeoutSeconds }}
           {{- end }}
           {{- if .Values.readiness.enabled }}
@@ -68,6 +70,8 @@ spec:
             httpGet:
               path: {{ .Values.readiness.path }}
               port: {{ .Values.readiness.port }}
+            initialDelaySeconds: {{ .Values.readiness.initialDelaySeconds }}
+            periodSeconds: {{ .Values.readiness.periodSeconds }}
             timeoutSeconds: {{ .Values.readiness.timeoutSeconds }}
           {{- end }}
           resources:

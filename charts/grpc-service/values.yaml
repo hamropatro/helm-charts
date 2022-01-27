@@ -57,10 +57,15 @@ liveness:
   path: ""
   command: []
   timeoutSeconds: 1
+  periodSeconds: 30
+  initialDelaySeconds: 30
+  timeoutSeconds: 1
 readiness:
   enabled: true
   path: ""
   command: []
+  periodSeconds: 30
+  initialDelaySeconds: 30
   timeoutSeconds: 1
 service:
   type: ClusterIP
