@@ -39,6 +39,7 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
+initContainers: []
 http:
   enabled: false
   port: 8080
@@ -51,7 +52,16 @@ grpcs:
   tlsSecret: ""
 tlsroute:
   enabled: false
-  snis: []
+  snis:
+    - example.com
+httproute:
+  enabled: false
+  gateways: []
+  hosts:
+    - example.com
+  paths: 
+    - path: /
+   
 liveness:
   enabled: true
   path: ""
