@@ -58,7 +58,7 @@ spec:
           readinessProbe:
             httpGet:
               path: {{ .Values.liveness.path }}
-              port: port: {{ .Values.liveness.port }}
+              port: {{ .Values.liveness.port }}
             initialDelaySeconds: 120
             periodSeconds: 60
           resources:
