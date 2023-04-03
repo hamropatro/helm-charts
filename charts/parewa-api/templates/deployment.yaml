@@ -57,11 +57,11 @@ spec:
             initialDelaySeconds: 120
             periodSeconds: 60
           {{- end }}
-          {{- if .Values.liveness.enabled }}
+          {{- if .Values.readiness.enabled }}
           readinessProbe:
             httpGet:
-              path: {{ .Values.liveness.path }}
-              port: {{ .Values.liveness.port }}
+              path: {{ .Values.readiness.path }}
+              port: {{ .Values.readiness.port }}
             initialDelaySeconds: 120
             periodSeconds: 60
           {{- end }}

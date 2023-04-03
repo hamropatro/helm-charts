@@ -1,0 +1,59 @@
+    image:
+      repository: hamropatrorepo/parewa-backend
+      tag: latest
+      imagePullPolicy: Always
+    imagePullSecrets:
+      - name: regcred
+    env:
+      ANALYTICSSERVER: analytics.hamrostack.com
+      ANALYTICSAUTHKEY: "kUd0S-#a1"
+      PROJECT_URL: "https://jyotishsewa.alpha.hamrostack.com"
+      spring.profiles.active: dev
+      spring.datasource.url: jdbc:postgresql://192.168.113.144:5432/parewa_dev
+      spring.datasource.username: parewa
+      spring.datasource.password: 5hqDXye3A5AUn7
+      spring.redis.host: redis
+      spring.redis.password: 50a5d39b70bbf94b8e28cf7e
+      spring.redis.port: 6379
+      memcached.host: memcached
+      memcached.port: 11211
+      miniapp.health.id: 085ab0d0-37f1-11ec-ba80-0242ac120073
+      miniapp.health.secretKey: lql4xcsCy6bnv1sl
+      connectips.app.id: WAL-761-APP-1
+      connectips.app.name: Lenden Pvt ltd
+      connectips.merchantId: 761
+      sms.enable: false
+
+      # feign.client.config.default.loggerLevel: full
+    resources:
+      limits:
+        memory: 4000Mi
+        cpu: 4000m
+      requests:
+        memory: 1500Mi
+        cpu: 1500m
+
+    configName: parewa-config
+    # ingress:
+    #   enabled: true
+    #   hosts:
+    #     - host: parewa-dev.hamro-files.com
+    #       paths:
+    #         - path: "/"
+    #           pathType: Prefix
+    #   tls:
+    #     - secretName: hamro-files.com
+    #       hosts:
+    #         - parewa-dev.hamro-files.com
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 1
+    liveness:
+      enabled: false
+      path: /actuator/
+      port: http
+    readiness:
+      enabled: false
+      path: /sachin
+      port: http
