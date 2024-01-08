@@ -3,9 +3,9 @@ entries:
   coturn:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-08T15:13:53.517438778+05:45"
+    created: "2024-01-08T15:41:05.636651658+05:45"
     description: A Helm chart for Kubernetes
-    digest: 5b2f56befa639fec7420d95ba731f7fe9c35b128253b4288dbe0d6b3cec9554b
+    digest: b64b634276293077bca9dcd6f89289743ccbe2b1fadc84234d7617770d4b6337
     name: coturn
     type: application
     urls:
@@ -14,9 +14,9 @@ entries:
   ecommerce-web:
   - apiVersion: v2
     appVersion: "2021-05-04"
-    created: "2024-01-08T15:13:53.517881963+05:45"
+    created: "2024-01-08T15:41:05.637279165+05:45"
     description: A Helm chart for Kubernetes
-    digest: e70246956bede2d335c284aecf3e1ec53807a7f25928957fef255d13bb639295
+    digest: 02db19b9a4f5c185f2edd5c3724b3fd5fc7f6bc365beec929e0f1105e696d564
     name: ecommerce-web
     type: application
     urls:
@@ -25,9 +25,9 @@ entries:
   grpc-service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-08T15:13:53.518417944+05:45"
+    created: "2024-01-08T15:41:05.638005901+05:45"
     description: A Helm chart for Kubernetes
-    digest: 90fd510ac474a1607d75b597d3d909080980451e1805292ae6241a1463b4ef5e
+    digest: a75c9c66c7035a43ec75241bb56806d0a885e0e9ea314208f106fcad83a0a8c2
     name: grpc-service
     type: application
     urls:
@@ -36,9 +36,9 @@ entries:
   micronaut-service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-08T15:13:53.518800122+05:45"
+    created: "2024-01-08T15:41:05.638543242+05:45"
     description: A Helm chart for Kubernetes
-    digest: 30e2493b7addc33d2eb8b66289b1941dd96638efb4c7e80786d0a6ba08e3e357
+    digest: 1734c75a1bb27eddf8fb5c865e637c83ae72d9199425508ce948c8bfbebf2aa5
     name: micronaut-service
     type: application
     urls:
@@ -47,9 +47,9 @@ entries:
   msg-service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-08T15:13:53.519179953+05:45"
+    created: "2024-01-08T15:41:05.639125134+05:45"
     description: A Helm chart for Kubernetes
-    digest: 1c7707aa16a168b7f3fdb396fb7d4dd1cea7979d89e64b4ce91a476a2e6fe6e7
+    digest: 3bbe05c9b3e632f07e975dcbc64142dc6b0e7121cf6166fd900bd2be5f52200c
     name: msg-service
     type: application
     urls:
@@ -58,9 +58,9 @@ entries:
   parewa-api:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-08T15:13:53.519509402+05:45"
+    created: "2024-01-08T15:41:05.639667551+05:45"
     description: A Helm chart for Kubernetes
-    digest: be2da897b966c87c215361412d4b46cb2caefc6d64d7d027d7eb368f5725b126
+    digest: 3346000b5fae909c4c1365adf287ba50cf94396a52c62bc78a644854ae23e406
     name: parewa-api
     type: application
     urls:
@@ -69,9 +69,9 @@ entries:
   quarkus-service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-08T15:13:53.519867485+05:45"
+    created: "2024-01-08T15:41:05.640271875+05:45"
     description: A Helm chart for Kubernetes
-    digest: 5096c5e1a98e8e644df0de337c9c5baa0dc7abb18ffcd90b32bdb75584824a44
+    digest: be4276744ac2ebe49d1a0148bc3bed1f57a22b9814f7f297aac1116bdd8feade
     name: quarkus-service
     type: application
     urls:
@@ -80,9 +80,9 @@ entries:
   service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-08T15:13:53.520390932+05:45"
+    created: "2024-01-08T15:41:05.641093858+05:45"
     description: A Helm chart for Kubernetes
-    digest: d0c1ff34170dde1a1f50be6a61828be8e429db73b80cf83e45c27031c347a33b
+    digest: 0fe24b806c629bc00dd69b1b03482778a81173048a95b97f02a278f101e10696
     name: service
     type: application
     urls:
@@ -91,10 +91,10 @@ entries:
   trino:
   - apiVersion: v2
     appVersion: "375"
-    created: "2024-01-08T15:13:53.52102132+05:45"
+    created: "2024-01-08T15:41:05.642090835+05:45"
     description: Fast distributed SQL query engine for big data analytics that helps
       you explore your data universe
-    digest: 15bad6f72cb366a306576c0b5a4879397efbfd96e4b087202fdd8b922c5cd1ce
+    digest: 0ee5fdc8c8be066dd707b1b522cc5b43999b80549b3051060ce17fb6ba524cbb
     name: trino
     type: application
     urls:
@@ -103,9 +103,9 @@ entries:
   tusd:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-08T15:13:53.521359184+05:45"
+    created: "2024-01-08T15:41:05.64256414+05:45"
     description: A Helm chart for Kubernetes
-    digest: 0ac9613492c32feec1c097254407c55c7c6fe5df70f4e05012e4f9349794f017
+    digest: 1d9093a0376afb1c7c2a5c47dcb1c8b3e6c746e0d43f069bcefd0d96444b8365
     name: tusd
     type: application
     urls:
@@ -114,12 +114,12 @@ entries:
   web-service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-08T15:13:53.521817391+05:45"
+    created: "2024-01-08T15:41:05.643162115+05:45"
     description: A Helm chart for Kubernetes
-    digest: 34b36bb7274b67dc393384d04ce53fcfb6ae14e6b8d23a6d83d55afe224818a3
+    digest: 7a07d91fa67bb34875e76d5178f009fe9602c8f550f655d894a42067808c3089
     name: web-service
     type: application
     urls:
     - web-service-0.1.1.tgz
     version: 0.1.1
-generated: "2024-01-08T15:13:53.516902364+05:45"
+generated: "2024-01-08T15:41:05.635910054+05:45"
