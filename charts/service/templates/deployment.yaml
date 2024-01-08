@@ -77,6 +77,9 @@ spec:
           args: 
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          envFrom:
+            - secretRef:
+                name: {{ .Release.Name }}-secrets
           env:
             {{- range $key, $value := .Values.env }}
             - name: {{ $key}}

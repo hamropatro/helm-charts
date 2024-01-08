@@ -45,6 +45,9 @@ spec:
           args: 
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          envFrom:
+            - secretRef:
+                name: {{ .Release.Name }}-secrets
           env:
             - name: PORT
               value: "{{ .Values.service.targetPort}}"
