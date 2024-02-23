@@ -21,10 +21,10 @@ publish: release
 release: clean lint build index
 	cp README.md build/
 	cd build
-	git branch -D build
-	git checkout -b build
-	git add -f build/
+	#git branch -D build
+	#git checkout -b build
+	git add .
 	git commit -m "Publish repo"
 	git push -fu origin build
-	git checkout release
+	#git checkout release
 	helm repo update
