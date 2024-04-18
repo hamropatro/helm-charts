@@ -61,18 +61,32 @@ spec:
               protocol: TCP
           {{- if .Values.liveness.enabled }}
           livenessProbe:
+            {{- with .Values.liveness.command }}
+            exec:
+              command: 
+                {{- toYaml . | nindent 16 }}
+            {{- end }}
+            {{- if .Values.liveness.path }}
             httpGet:
               path: {{ .Values.liveness.path }}
               port: {{ .Values.liveness.port }}
+            {{- end }}
             initialDelaySeconds: {{ .Values.liveness.initialDelaySeconds }}
             periodSeconds: {{ .Values.liveness.periodSeconds }}
             timeoutSeconds: {{ .Values.liveness.timeoutSeconds }}
           {{- end }}
           {{- if .Values.readiness.enabled }}
           readinessProbe:
+            {{- with .Values.readiness.command }}
+            exec:
+              command: 
+                {{- toYaml . | nindent 16 }}
+            {{- end }}
+            {{- if .Values.readiness.path }}
             httpGet:
               path: {{ .Values.readiness.path }}
               port: {{ .Values.readiness.port }}
+            {{- end }}
             initialDelaySeconds: {{ .Values.readiness.initialDelaySeconds }}
             periodSeconds: {{ .Values.readiness.periodSeconds }}
             timeoutSeconds: {{ .Values.readiness.timeoutSeconds }}
