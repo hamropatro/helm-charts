@@ -1,0 +1,125 @@
+apiVersion: v1
+entries:
+  coturn:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-04-22T11:27:12.138826437+05:45"
+    description: A Helm chart for Kubernetes
+    digest: ecca468a583f5d09d9cfe2f28dd271fb9f8d89859d59b4b04af7ac14f7f73ad4
+    name: coturn
+    type: application
+    urls:
+    - coturn-0.1.0.tgz
+    version: 0.1.0
+  ecommerce-web:
+  - apiVersion: v2
+    appVersion: "2021-05-04"
+    created: "2024-04-22T11:27:12.139305636+05:45"
+    description: A Helm chart for Kubernetes
+    digest: 3e5ff6e3040929a57837c12952e52e0261d473ff9e8c7624b96f9a91aa24b3b0
+    name: ecommerce-web
+    type: application
+    urls:
+    - ecommerce-web-0.1.4.tgz
+    version: 0.1.4
+  grpc-service:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-04-22T11:27:12.139763664+05:45"
+    description: A Helm chart for Kubernetes
+    digest: 66c86ee9548cd280df76915d01527d4040cfaf2bfb7792712d8fc6066d701ab2
+    name: grpc-service
+    type: application
+    urls:
+    - grpc-service-0.1.0.tgz
+    version: 0.1.0
+  micronaut-service:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-04-22T11:27:12.14010345+05:45"
+    description: A Helm chart for Kubernetes
+    digest: c07effa084b20f7b5ef0d6aa8e06e91fbd6c19b15f3be177abd6483179aa2242
+    name: micronaut-service
+    type: application
+    urls:
+    - micronaut-service-0.1.1.tgz
+    version: 0.1.1
+  msg-service:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-04-22T11:27:12.140454172+05:45"
+    description: A Helm chart for Kubernetes
+    digest: 299c07c621705b40a54cb6ac613b4ae756d27fe23b65a7571fc113dcb521b9d0
+    name: msg-service
+    type: application
+    urls:
+    - msg-service-0.1.0.tgz
+    version: 0.1.0
+  parewa-api:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-04-22T11:27:12.140764125+05:45"
+    description: A Helm chart for Kubernetes
+    digest: 11303311b4bd028ac881c9cb05e9d79dfbac31fca38b309a5731db34e6521221
+    name: parewa-api
+    type: application
+    urls:
+    - parewa-api-0.1.1.tgz
+    version: 0.1.1
+  quarkus-service:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-04-22T11:27:12.141077806+05:45"
+    description: A Helm chart for Kubernetes
+    digest: 04ddaec7de79779fe1b16c32b0b060c4493b919652918912f422317e99358c14
+    name: quarkus-service
+    type: application
+    urls:
+    - quarkus-service-0.1.0.tgz
+    version: 0.1.0
+  service:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-04-22T11:27:12.141535696+05:45"
+    description: A Helm chart for Kubernetes
+    digest: cd22f64311f4b69d5484ebb2a592cc879dd7483d84ba8f7777174eba11fecfce
+    name: service
+    type: application
+    urls:
+    - service-0.1.1.tgz
+    version: 0.1.1
+  trino:
+  - apiVersion: v2
+    appVersion: "375"
+    created: "2024-04-22T11:27:12.142086697+05:45"
+    description: Fast distributed SQL query engine for big data analytics that helps
+      you explore your data universe
+    digest: 6e9596b521edc3a7d75f6d36f8345071d4eec303ba87f74c6394316e79f8aaef
+    name: trino
+    type: application
+    urls:
+    - trino-0.10.2.tgz
+    version: 0.10.2
+  tusd:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-04-22T11:27:12.142451336+05:45"
+    description: A Helm chart for Kubernetes
+    digest: 8972632e720f74e89edd133c9d05d60d2037773fc52d87e7afe386dcf185f160
+    name: tusd
+    type: application
+    urls:
+    - tusd-0.1.1.tgz
+    version: 0.1.1
+  web-service:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-04-22T11:27:12.144478944+05:45"
+    description: A Helm chart for Kubernetes
+    digest: 9dc495ad9c0a5ad4a53f23e3abfb28e104af9fbabc1e8cefd5f69b2aae6473e0
+    name: web-service
+    type: application
+    urls:
+    - web-service-0.1.1.tgz
+    version: 0.1.1
+generated: "2024-04-22T11:27:12.13823071+05:45"
