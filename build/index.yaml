@@ -3,7 +3,7 @@ entries:
   coturn:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-04-22T11:27:12.138826437+05:45"
+    created: "2024-08-08T09:49:49.167935879+05:45"
     description: A Helm chart for Kubernetes
     digest: ecca468a583f5d09d9cfe2f28dd271fb9f8d89859d59b4b04af7ac14f7f73ad4
     name: coturn
@@ -14,7 +14,7 @@ entries:
   ecommerce-web:
   - apiVersion: v2
     appVersion: "2021-05-04"
-    created: "2024-04-22T11:27:12.139305636+05:45"
+    created: "2024-08-08T09:49:49.169575201+05:45"
     description: A Helm chart for Kubernetes
     digest: 3e5ff6e3040929a57837c12952e52e0261d473ff9e8c7624b96f9a91aa24b3b0
     name: ecommerce-web
@@ -25,7 +25,17 @@ entries:
   grpc-service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-04-22T11:27:12.139763664+05:45"
+    created: "2024-08-08T09:49:49.170910817+05:45"
+    description: A Helm chart for Kubernetes
+    digest: d29e15cd9cf797108339e56d92946b298a3ff25a81f27aa70ab372b9c32c14fe
+    name: grpc-service
+    type: application
+    urls:
+    - grpc-service-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-08-08T09:49:49.170307134+05:45"
     description: A Helm chart for Kubernetes
     digest: 66c86ee9548cd280df76915d01527d4040cfaf2bfb7792712d8fc6066d701ab2
     name: grpc-service
@@ -36,7 +46,7 @@ entries:
   micronaut-service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-04-22T11:27:12.14010345+05:45"
+    created: "2024-08-08T09:49:49.17151747+05:45"
     description: A Helm chart for Kubernetes
     digest: c07effa084b20f7b5ef0d6aa8e06e91fbd6c19b15f3be177abd6483179aa2242
     name: micronaut-service
@@ -47,7 +57,7 @@ entries:
   msg-service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-04-22T11:27:12.140454172+05:45"
+    created: "2024-08-08T09:49:49.172161208+05:45"
     description: A Helm chart for Kubernetes
     digest: 299c07c621705b40a54cb6ac613b4ae756d27fe23b65a7571fc113dcb521b9d0
     name: msg-service
@@ -58,7 +68,7 @@ entries:
   parewa-api:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-04-22T11:27:12.140764125+05:45"
+    created: "2024-08-08T09:49:49.172707915+05:45"
     description: A Helm chart for Kubernetes
     digest: 11303311b4bd028ac881c9cb05e9d79dfbac31fca38b309a5731db34e6521221
     name: parewa-api
@@ -69,7 +79,7 @@ entries:
   quarkus-service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-04-22T11:27:12.141077806+05:45"
+    created: "2024-08-08T09:49:49.173273094+05:45"
     description: A Helm chart for Kubernetes
     digest: 04ddaec7de79779fe1b16c32b0b060c4493b919652918912f422317e99358c14
     name: quarkus-service
@@ -80,7 +90,7 @@ entries:
   service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-04-22T11:27:12.141535696+05:45"
+    created: "2024-08-08T09:49:49.174110308+05:45"
     description: A Helm chart for Kubernetes
     digest: cd22f64311f4b69d5484ebb2a592cc879dd7483d84ba8f7777174eba11fecfce
     name: service
@@ -91,7 +101,7 @@ entries:
   trino:
   - apiVersion: v2
     appVersion: "375"
-    created: "2024-04-22T11:27:12.142086697+05:45"
+    created: "2024-08-08T09:49:49.175245939+05:45"
     description: Fast distributed SQL query engine for big data analytics that helps
       you explore your data universe
     digest: 6e9596b521edc3a7d75f6d36f8345071d4eec303ba87f74c6394316e79f8aaef
@@ -103,7 +113,7 @@ entries:
   tusd:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-04-22T11:27:12.142451336+05:45"
+    created: "2024-08-08T09:49:49.176064451+05:45"
     description: A Helm chart for Kubernetes
     digest: 8972632e720f74e89edd133c9d05d60d2037773fc52d87e7afe386dcf185f160
     name: tusd
@@ -114,7 +124,7 @@ entries:
   web-service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-04-22T11:27:12.144478944+05:45"
+    created: "2024-08-08T09:49:49.177041406+05:45"
     description: A Helm chart for Kubernetes
     digest: 9dc495ad9c0a5ad4a53f23e3abfb28e104af9fbabc1e8cefd5f69b2aae6473e0
     name: web-service
@@ -122,4 +132,4 @@ entries:
     urls:
     - web-service-0.1.1.tgz
     version: 0.1.1
-generated: "2024-04-22T11:27:12.13823071+05:45"
+generated: "2024-08-08T09:49:49.165492306+05:45"
