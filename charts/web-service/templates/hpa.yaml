@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "grpc-service.fullname" . }}
+  name: {{ include "web-service.fullname" . }}
   labels:
-    {{- include "grpc-service.labels" . | nindent 4 }}
+    {{- include "web-service.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "grpc-service.fullname" . }}
+    name: {{ include "web-service.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
