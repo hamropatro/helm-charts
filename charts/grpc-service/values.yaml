@@ -137,3 +137,19 @@ httpRoute:
         - path:
             type: PathPrefix
             value: /
+
+grpcRoute:
+  enabled: false
+  parentRefs:
+    - name: envoygateway
+      kind: Gateway
+      namespace: default
+  hostnames:
+    - "grpc-service.example.com"
+  rules:
+    - backendRefs:
+        - group: ""
+          kind: "Service"
+          name: grpc-service
+          port: 50051
+          weight: 1

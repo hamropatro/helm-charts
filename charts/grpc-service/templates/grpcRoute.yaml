@@ -1,0 +1,34 @@
+{{- if .Values.grpcRoute.enabled -}}
+apiVersion: gateway.networking.k8s.io/v1
+kind: GRPCRoute
+metadata:
+  name: {{ include "grpc-service.fullname" . }}
+  labels:
+    {{- include "grpc-service.labels" . | nindent 4 }}
+spec:
+  parentRefs:
+    {{- range .Values.grpcRoute.parentRefs }}
+    - name: {{ .name }}
+      kind: {{ .kind }}
+      {{- if .namespace }}
+      namespace: {{ .namespace }}
+      {{- end }}
+    {{- end }}
+  
+  hostnames:
+    {{- range .Values.grpcRoute.hostnames }}
+    - "{{ . }}"
+    {{- end }}
+
+  rules:
+    {{- range .Values.grpcRoute.rules }}
+    - backendRefs:
+        {{- range .backendRefs }}
+        - group: {{ .group }}
+          kind: {{ .kind }}
+          name: {{ .name }}
+          port: {{ .port  }}
+          weight: {{ .weight | default 1 }}
+        {{- end }}
+    {{- end }}
+{{- end }}
