@@ -117,3 +117,23 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+httpRoute:
+  enabled: false
+  parentRefs:
+    - name: envoygateway
+      kind: Gateway
+      namespace: default
+  hostnames:
+    - "grpc-service.example.com"
+  rules:
+    - backendRefs:
+        - group: ""
+          kind: "Service"
+          weight: 1
+          name: grpc-service
+          port: 80
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
