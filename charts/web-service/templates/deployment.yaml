@@ -45,15 +45,17 @@ spec:
           args: 
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          envFrom:
-            - secretRef:
-                name: {{ .Release.Name }}-secrets
           env:
-            - name: PORT
-              value: "{{ .Values.service.targetPort}}"
             {{- range $key, $value := .Values.env }}
             - name: {{ $key}}
               value: {{ $value | quote}}
+            {{- end }}
+            {{- range $key, $value := .Values.secretenv }}
+            - name: {{ $key }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Release.Name }}-secrets
+                  key: {{ $key }}
             {{- end }}
           ports:
             - name: http
