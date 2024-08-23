@@ -69,7 +69,6 @@ liveness:
   timeoutSeconds: 1
   periodSeconds: 30
   initialDelaySeconds: 30
-  timeoutSeconds: 1
 readiness:
   enabled: true
   path: ""
@@ -128,3 +127,39 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+httpRoute:
+  enabled: false
+  parentRefs:
+    - name: envoygateway
+      kind: Gateway
+      namespace: default
+  hostnames:
+    - "service.example.com"
+  rules:
+    - backendRefs:
+        - group: ""
+          kind: "Service"
+          weight: 1
+          name: service
+          port: 80
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
+
+grpcRoute:
+  enabled: false
+  parentRefs:
+    - name: envoygateway
+      kind: Gateway
+      namespace: default
+  hostnames:
+    - "service.example.com"
+  rules:
+    - backendRefs:
+        - group: ""
+          kind: "Service"
+          name: service
+          port: 50051
+          weight: 1
