@@ -127,7 +127,7 @@ httpRoute:
             type: PathPrefix
             value: /
   securityPolicyRefs:
-    enabled: false 
+    enabled: true 
     policies:
       - name: cors-policy
         namespace: default
