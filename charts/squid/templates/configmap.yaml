@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "squid.fullname" . }}-conf
+  labels:
+    app: {{ template "squid.name" . }}
+    chart: {{ template "squid.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  squid.conf: |
+{{- if .Values.metrics.enabled }}
+    acl prometheus src 127.0.0.1/32
+    http_access allow manager prometheus
+{{- end }}
+{{ .Values.config | indent 4 }}
