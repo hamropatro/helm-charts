@@ -15,6 +15,9 @@ metadata:
   {{- if .Values.http.enabled }}
     appProtocol.http: "true"
   {{- end }}
+  {{- if .Values.metric.enabled }}
+    appProtocol.metric: "true"
+  {{- end }}
   {{- with .Values.deploymentAnnotations }}
     {{- toYaml . | nindent 4 }}
   {{- end }}

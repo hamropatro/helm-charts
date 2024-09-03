@@ -45,6 +45,9 @@ http:
 grpc:
   enabled: false
   port: 50051
+metrics:
+  enabled: false
+  port: 9004
 grpcs:
   enabled: false
   port: 50052

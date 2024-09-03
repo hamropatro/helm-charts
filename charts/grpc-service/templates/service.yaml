@@ -28,5 +28,11 @@ spec:
       name: grpcs
       appProtocol: https
     {{- end }}
+    {{- if .Values.metric.enabled }}
+    - port: {{ .Values.metric.port }}
+      protocol: TCP
+      targetPort: metric
+      name: metric
+      appProtocol: http
   selector:
     {{- include "grpc-service.selectorLabels" . | nindent 4 }}
