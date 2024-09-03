@@ -109,6 +109,11 @@ spec:
               name: grpcs
               containerPort: {{ .Values.grpcs.port }}
           {{- end }}
+          {{- if .Values.metric.enabled }}
+            - protocol: TCP
+              name: metric
+              containerPort: {{ .Values.metric.port }}
+          {{- end }}
           volumeMounts:
             - name: config
               mountPath: /config
