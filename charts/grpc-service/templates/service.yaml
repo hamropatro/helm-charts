@@ -34,5 +34,6 @@ spec:
       targetPort: metric
       name: metric
       appProtocol: http
+    {{- end }}
   selector:
     {{- include "grpc-service.selectorLabels" . | nindent 4 }}
