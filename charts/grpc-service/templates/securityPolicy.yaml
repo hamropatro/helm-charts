@@ -1,0 +1,27 @@
+{{- if and .Values.grpcRoute.enabled .Values.securityPolicy.enabled -}}
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: {{ include "grpc-service.fullname" . }}
+  {{- with .Values.securityPolicy.metadata.labels }}
+  labels:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- with .Values.securityPolicy.spec.targetRefs }}
+  targetRefs:
+    {{- toYaml . | nindent 4 }}
+  {{- else }}
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: GRPCRoute
+      name: {{ include "grpc-service.fullname" . }}
+  {{- end }}
+  {{- if .Values.securityPolicy.spec.cors }}
+  cors:
+    {{- toYaml .Values.securityPolicy.spec.cors | nindent 4 }}
+  {{- end }}
+  {{- with .Values.securityPolicy.spec.additionalConfig }}
+    {{- toYaml . | nindent 2 }}
+  {{- end }}
+{{- end }}

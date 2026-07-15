@@ -1,0 +1,102 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "msg-service.fullname" . }}
+  labels:
+    {{- include "msg-service.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "msg-service.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "msg-service.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "msg-service.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - mountPath: /var/logs/hamropatro
+              name: log-volume
+            - mountPath: /opt/hamropatro/config
+              name: config-volume
+            - mountPath: /opt/hamropatro/certs
+              name: cert-volume
+          ports:
+            - name: http
+              containerPort: {{ default 80 .Values.container.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.liveness.endpoint | quote }}
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.readiness.endpoint | quote }}
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: "REDIS_HOST"
+              value: {{ .Values.redis.host }}
+            - name: "REDIS_PASSWORD"
+              value: {{ .Values.redis.password }}
+      volumes:
+        - name: log-volume
+          emptyDir: { }
+        - name: config-volume
+          projected:
+            sources:
+              - configMap:
+                  name: msg-gateway-service-config
+              - configMap:
+                  name: msg-contact-service-config
+              - configMap:
+                  name: msg-media-service-config
+              - configMap:
+                  name: msg-notification-service-config
+              - configMap:
+                  name: msg-user-service-config
+              - configMap:
+                  name: msg-xmpp-service-config
+        - name: cert-volume
+          projected:
+            sources:
+              - secret:
+                  name: {{ .Values.cert.apns_secret_name | quote }} 
+              - secret:
+                  name: {{ .Values.cert.voip_secret_name | quote }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

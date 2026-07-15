@@ -1,0 +1,90 @@
+name: Release Charts
+
+on:
+  push:
+    branches:
+      - release
+    paths-ignore:
+      - build/**
+      - "**/*.md"
+      - .github/workflows/release.yaml
+
+jobs:
+  lint:
+    name: Lint charts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.14.4
+
+      - name: Lint all charts
+        run: |
+          set -euo pipefail
+          for chart in charts/*; do
+            [ -d "$chart" ] || continue
+            echo "Linting $chart..."
+            helm lint "$chart"
+          done
+
+  release:
+    name: Release changed charts
+    needs: lint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout release
+        uses: actions/checkout@v4
+        with:
+          ref: release
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.14.4
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.6.0
+        with:
+          charts_dir: charts
+          pages_branch: release
+          skip_existing: true
+        env:
+          CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Refresh workspace after chart-releaser commit
+        run: |
+          git fetch origin release
+          git reset --hard origin/release
+
+      - name: Sync index.yaml to build/
+        run: |
+          set -euo pipefail
+          mkdir -p build
+          cp index.yaml build/index.yaml
+          cp README.md build/
+
+      - name: Commit build output
+        run: |
+          set -euo pipefail
+          git add -A build/
+          if git diff --cached --exit-code; then
+            echo "No build changes to commit."
+          else
+            git commit -m "Sync Helm index to build/"
+            git push origin release
+          fi

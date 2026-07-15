@@ -1,0 +1,123 @@
+apiVersion: v1
+entries:
+  coturn:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-07-15T10:19:05.096467531Z"
+    description: A Helm chart for Kubernetes
+    digest: 22e556479d777ba07211e5f34a7ae07c7fbcdf91c1acc01dc8d0c1017ab037e4
+    name: coturn
+    type: application
+    urls:
+    - https://github.com/hamropatro/helm-charts/releases/download/coturn-0.3.5/coturn-0.3.5.tgz
+    version: 0.3.5
+  ecommerce-web:
+  - apiVersion: v2
+    appVersion: "2021-05-04"
+    created: "2026-07-15T10:19:05.255693354Z"
+    description: A Helm chart for Kubernetes
+    digest: 5cf524f91ff4e99c5ee8b57cdd8e95ca80591369d1b99bad8afb82285dc2b28f
+    name: ecommerce-web
+    type: application
+    urls:
+    - https://github.com/hamropatro/helm-charts/releases/download/ecommerce-web-0.3.1/ecommerce-web-0.3.1.tgz
+    version: 0.3.1
+  grpc-service:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-07-15T10:19:05.418469995Z"
+    description: A Helm chart for Kubernetes
+    digest: e509c08c46061fabe7f704ebd43c2a0ab0a8a350df3ee7771aaf5187b3500fca
+    name: grpc-service
+    type: application
+    urls:
+    - https://github.com/hamropatro/helm-charts/releases/download/grpc-service-0.3.6/grpc-service-0.3.6.tgz
+    version: 0.3.6
+  micronaut-service:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-07-15T10:19:05.586258219Z"
+    description: A Helm chart for Kubernetes
+    digest: 1ae3f47973a442fc19c3785c5712ce2fd560c445b54486a75e5781d4f2f0800b
+    name: micronaut-service
+    type: application
+    urls:
+    - https://github.com/hamropatro/helm-charts/releases/download/micronaut-service-0.3.1/micronaut-service-0.3.1.tgz
+    version: 0.3.1
+  msg-service:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-07-15T10:19:05.739501589Z"
+    description: A Helm chart for Kubernetes
+    digest: b26435e6de63797440072db557ba6c17701ce1323aaa8775b1abb4b302befd29
+    name: msg-service
+    type: application
+    urls:
+    - https://github.com/hamropatro/helm-charts/releases/download/msg-service-0.3.1/msg-service-0.3.1.tgz
+    version: 0.3.1
+  parewa-api:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-07-15T10:19:05.891725138Z"
+    description: A Helm chart for Kubernetes
+    digest: 71df56500706ce5023254088ec6cf2c8cb32e62b8a3cd732856bb7a0df0bb3a2
+    name: parewa-api
+    type: application
+    urls:
+    - https://github.com/hamropatro/helm-charts/releases/download/parewa-api-0.3.1/parewa-api-0.3.1.tgz
+    version: 0.3.1
+  quarkus-service:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-07-15T10:19:06.033056296Z"
+    description: A Helm chart for Kubernetes
+    digest: 5438d91b59980341d6b2917ff6f7221385e39586d8bb7d98ddc3bce13982cac1
+    name: quarkus-service
+    type: application
+    urls:
+    - https://github.com/hamropatro/helm-charts/releases/download/quarkus-service-0.3.1/quarkus-service-0.3.1.tgz
+    version: 0.3.1
+  service:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-07-15T10:19:06.212129841Z"
+    description: A Helm chart for Kubernetes
+    digest: 3d77772d301b6f0a0ebd65d75addbd4cfd8f8ca57e29bebdb86c3894602709c5
+    name: service
+    type: application
+    urls:
+    - https://github.com/hamropatro/helm-charts/releases/download/service-0.3.11/service-0.3.11.tgz
+    version: 0.3.11
+  tusd:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-07-15T11:07:59.366704088Z"
+    description: A Helm chart for Kubernetes
+    digest: d9b2b50d291f4c2b35e90090618bb0d5e0fb38a16437c2d44e054a97b5edc49b
+    name: tusd
+    type: application
+    urls:
+    - https://github.com/hamropatro/helm-charts/releases/download/tusd-0.3.8/tusd-0.3.8.tgz
+    version: 0.3.8
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-07-15T10:02:05.148132538Z"
+    description: A Helm chart for Kubernetes
+    digest: f8c365d4dcbf80474e3493d3cc201d9affe1c57ec54d25d1255e3e8fad9b4c85
+    name: tusd
+    type: application
+    urls:
+    - https://github.com/hamropatro/helm-charts/releases/download/tusd-0.3.7/tusd-0.3.7.tgz
+    version: 0.3.7
+  web-service:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-07-15T10:06:21.844905161Z"
+    description: A Helm chart for Kubernetes
+    digest: 6e4646cb21d3101c2dc330a9fdfd205ef09cc6a9ad0c9105c4a2d18d5069c7c2
+    name: web-service
+    type: application
+    urls:
+    - https://github.com/hamropatro/helm-charts/releases/download/web-service-0.3.4/web-service-0.3.4.tgz
+    version: 0.3.4
+generated: "2026-07-15T11:07:59.366713976Z"
