@@ -25,6 +25,16 @@ entries:
   grpc-service:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-07-15T11:43:58.625117366Z"
+    description: A Helm chart for Kubernetes
+    digest: 7318dec828665f43bd61e59f3bfa88d003f8ed40278780fcf56cf945276e80dd
+    name: grpc-service
+    type: application
+    urls:
+    - https://github.com/hamropatro/helm-charts/releases/download/grpc-service-0.3.7/grpc-service-0.3.7.tgz
+    version: 0.3.7
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-07-15T10:19:05.418469995Z"
     description: A Helm chart for Kubernetes
     digest: e509c08c46061fabe7f704ebd43c2a0ab0a8a350df3ee7771aaf5187b3500fca
@@ -80,6 +90,16 @@ entries:
   service:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-07-15T11:43:58.815792703Z"
+    description: A Helm chart for Kubernetes
+    digest: a6814aefbd6c7724b7b5a18cf739172c82fd0fa102d6881422c0181cf5a94c2a
+    name: service
+    type: application
+    urls:
+    - https://github.com/hamropatro/helm-charts/releases/download/service-0.3.12/service-0.3.12.tgz
+    version: 0.3.12
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-07-15T10:19:06.212129841Z"
     description: A Helm chart for Kubernetes
     digest: 3d77772d301b6f0a0ebd65d75addbd4cfd8f8ca57e29bebdb86c3894602709c5
@@ -112,6 +132,16 @@ entries:
   web-service:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-07-15T11:43:59.010403564Z"
+    description: A Helm chart for Kubernetes
+    digest: 460ef04e098873a0470b8999cf3a5216997390c13ff16be85ed8c0946fad0fc3
+    name: web-service
+    type: application
+    urls:
+    - https://github.com/hamropatro/helm-charts/releases/download/web-service-0.3.5/web-service-0.3.5.tgz
+    version: 0.3.5
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-07-15T10:06:21.844905161Z"
     description: A Helm chart for Kubernetes
     digest: 6e4646cb21d3101c2dc330a9fdfd205ef09cc6a9ad0c9105c4a2d18d5069c7c2
@@ -120,4 +150,4 @@ entries:
     urls:
     - https://github.com/hamropatro/helm-charts/releases/download/web-service-0.3.4/web-service-0.3.4.tgz
     version: 0.3.4
-generated: "2026-07-15T11:07:59.366713976Z"
+generated: "2026-07-15T11:43:59.010434471Z"
