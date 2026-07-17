@@ -7,7 +7,6 @@ on:
     paths-ignore:
       - build/**
       - "**/*.md"
-      - .github/workflows/release.yaml
 
 jobs:
   lint:
