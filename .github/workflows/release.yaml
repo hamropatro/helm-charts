@@ -87,35 +87,50 @@ jobs:
             git commit -m "Sync Helm index to build/"
             git push origin release
           fi
-          
+
   deploy:
     name: Deploy GitHub Pages
     needs: release
     runs-on: ubuntu-latest
-  
+
     permissions:
       pages: write
       id-token: write
       contents: read
-  
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-  
+
     steps:
       - name: Checkout release branch
         uses: actions/checkout@v4
         with:
           ref: release
-  
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
-  
+
+      - name: Prepare Pages artifact
+        run: |
+          set -euo pipefail
+
+          rm -rf site
+          mkdir -p site/build
+
+          # Root
+          cp index.yaml site/
+          cp README.md site/
+
+          # Legacy /build
+          cp index.yaml site/build/
+          cp README.md site/build/
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build
-  
+          path: site
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
