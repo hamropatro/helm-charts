@@ -150,6 +150,16 @@ entries:
   service:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-07-17T07:36:48.1136656Z"
+    description: A Helm chart for Kubernetes
+    digest: 77e53b4276671d90b4834a36b680a1c58ad068f9a029986ae0b3816c281c66dc
+    name: service
+    type: application
+    urls:
+    - https://github.com/hamropatro/helm-charts/releases/download/service-0.3.13/service-0.3.13.tgz
+    version: 0.3.13
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-07-15T11:43:58.815792703Z"
     description: A Helm chart for Kubernetes
     digest: a6814aefbd6c7724b7b5a18cf739172c82fd0fa102d6881422c0181cf5a94c2a
@@ -263,4 +273,4 @@ entries:
     urls:
     - https://github.com/hamropatro/helm-charts/releases/download/web-service-0.3.4/web-service-0.3.4.tgz
     version: 0.3.4
-generated: "2026-07-15T12:34:09.158657871Z"
+generated: "2026-07-17T07:36:48.11369221Z"
