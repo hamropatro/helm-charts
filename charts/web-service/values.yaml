@@ -123,7 +123,7 @@ httpRoute:
         - group: ""
           kind: "Service"
           weight: 1
-          name: web-service
+          name: ""
           port: 80
       matches:
         - path:

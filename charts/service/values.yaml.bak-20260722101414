@@ -39,22 +39,29 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
+initContainers: []
 http:
   enabled: false
   port: 8080
 grpc:
   enabled: false
   port: 50051
-metric:
-  enabled: false
-  port: 9004
 grpcs:
   enabled: false
   port: 50052
   tlsSecret: ""
 tlsroute:
   enabled: false
-  snis: []
+  snis:
+    - example.com
+httproute:
+  enabled: false
+  gateways: []
+  hosts:
+    - example.com
+  paths:
+    - path: /
+
 liveness:
   enabled: true
   path: ""
@@ -73,7 +80,9 @@ service:
   type: ClusterIP
   port: 80
   targetPort: 80
-
+metric:
+  enabled: false
+  port: 9004
 metrics:
   serviceMonitor:
     enabled: false
@@ -128,14 +137,14 @@ httpRoute:
       kind: Gateway
       namespace: default
   hostnames:
-    - "grpc-service.example.com"
+    - "service.example.com"
   rules:
     - backendRefs:
         - group: ""
           kind: "Service"
           weight: 1
-          name: ""
-          port: 8080
+          name: service
+          port: 80
       matches:
         - path:
             type: PathPrefix
@@ -148,17 +157,14 @@ grpcRoute:
       kind: Gateway
       namespace: default
   hostnames:
-    - "grpc-service.example.com"
+    - "service.example.com"
   rules:
     - backendRefs:
         - group: ""
           kind: "Service"
-          name: ""
+          name: service
           port: 50051
           weight: 1
-
-  header:
-    name: X-Session-ID
 
 securityPolicy:
   enabled: false

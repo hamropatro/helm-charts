@@ -24,10 +24,10 @@ spec:
     {{- range .Values.grpcRoute.rules }}
     - backendRefs:
         {{- range .backendRefs }}
-        - group: {{ .group }}
-          kind: {{ .kind }}
-          name: {{ .name }}
-          port: {{ .port  }}
+        - group: {{ .group | default "" | quote }}
+          kind: {{ .kind | quote }}
+          name: {{ .name | default (include "grpc-service.fullname" $) }}
+          port: {{ .port | default $.Values.grpc.port }}
           weight: {{ .weight | default 1 }}
         {{- end }}
     {{- end }}

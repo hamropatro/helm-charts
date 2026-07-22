@@ -10,31 +10,70 @@ spec:
     {{- range .Values.httpRoute.parentRefs }}
     - name: {{ .name }}
       kind: {{ .kind }}
-      {{- if .namespace }}
-      namespace: {{ .namespace }}
+      {{- with .namespace }}
+      namespace: {{ . }}
       {{- end }}
     {{- end }}
 
   hostnames:
     {{- range .Values.httpRoute.hostnames }}
-    - "{{ . }}"
+    - {{ . | quote }}
     {{- end }}
 
   rules:
     {{- range .Values.httpRoute.rules }}
-    - backendRefs:
-        {{- range .backendRefs }}
-        - group: {{ .group }}
-          kind: {{ .kind }}
-          name: {{ .name }}
-          port: {{ .port }} 
-          weight: {{ .weight | default 1 }}  
-        {{- end }}
-      matches:
+    - matches:
         {{- range .matches }}
-        - path:
-            type: {{ .path.type }}
-            value: {{ .path.value }}
+        -
+          {{- with .path }}
+          path:
+            type: {{ .type }}
+            value: {{ .value | quote }}
+          {{- end }}
+
+          {{- with .headers }}
+          headers:
+{{ toYaml . | nindent 12 }}
+          {{- end }}
+
+          {{- with .queryParams }}
+          queryParams:
+{{ toYaml . | nindent 12 }}
+          {{- end }}
+
+          {{- with .method }}
+          method: {{ . }}
+          {{- end }}
         {{- end }}
+
+      backendRefs:
+        {{- range .backendRefs }}
+        - group: {{ .group | default "" | quote }}
+          kind: {{ .kind | default "Service" | quote }}
+          name: {{ .name | default (include "grpc-service.fullname" $) }}
+          port: {{ .port | default $.Values.http.port }}
+          weight: {{ .weight | default 1 }}
+        {{- end }}
+
+      {{- with .filters }}
+      filters:
+{{ toYaml . | nindent 8 }}
+      {{- end }}
+
+      {{- with .timeouts }}
+      timeouts:
+{{ toYaml . | nindent 8 }}
+      {{- end }}
+
+      {{- with .retry }}
+      retry:
+{{ toYaml . | nindent 8 }}
+      {{- end }}
+
+      {{- with .sessionPersistence }}
+      sessionPersistence:
+{{ toYaml . | nindent 8 }}
+      {{- end }}
+
     {{- end }}
 {{- end }}

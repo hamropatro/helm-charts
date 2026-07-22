@@ -54,13 +54,6 @@ tlsroute:
   enabled: false
   snis:
     - example.com
-httproute:
-  enabled: false
-  gateways: []
-  hosts:
-    - example.com
-  paths:
-    - path: /
 
 liveness:
   enabled: true
@@ -143,8 +136,8 @@ httpRoute:
         - group: ""
           kind: "Service"
           weight: 1
-          name: service
-          port: 80
+          name: ""
+          port: 8080
       matches:
         - path:
             type: PathPrefix
@@ -162,7 +155,7 @@ grpcRoute:
     - backendRefs:
         - group: ""
           kind: "Service"
-          name: service
+          name: ""
           port: 50051
           weight: 1
 
