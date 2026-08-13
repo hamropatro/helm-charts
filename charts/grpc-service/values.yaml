@@ -202,3 +202,28 @@ securityPolicy:
         - grpc-message
         - Grpc-Trailer-App-Id
       maxAge: "10m"
+
+# Pod DNS settings. Empty by default, so existing releases render byte-identically.
+#
+# Why this exists: on a cluster whose nodes carry extra search domains, kubelet appends them to
+# every pod's resolv.conf. With the default `ndots:5`, a 2-3 dot external hostname is tried against
+# each search domain FIRST, and on Alpine/musl images the lookup then fails outright rather than
+# falling through to the absolute name - so every external hostname becomes unresolvable while
+# cluster-internal short names keep working. Symptom in a Java service:
+#   UnknownHostException: <host>: Name has no usable address
+# Verified on the np cluster: identical failure from an old and a new image, so it is the
+# environment, not the app.
+#
+#   dnsConfig:
+#     options:
+#       - name: ndots
+#         value: "1"
+#
+# Do NOT work around it with a trailing dot on the hostname: it fixes resolution but the dot
+# propagates into the gRPC :authority / TLS SNI / Host header, and an edge/CDN in front will route
+# it to a default backend - measured as every RPC returning UNIMPLEMENTED.
+dnsPolicy: ""
+dnsConfig: {}
+
+# Static /etc/hosts entries, for the same class of problem when ndots is not enough.
+hostAliases: []
