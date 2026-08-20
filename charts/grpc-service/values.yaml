@@ -123,70 +123,23 @@ affinity: {}
 
 httpRoute:
   enabled: false
-
   parentRefs:
     - name: envoygateway
       kind: Gateway
       namespace: default
-
-  routes:
-    - name: default
-      hostnames:
-        - "web-service.example.com"
-      rules:
-        - matches:
-            - path:
-                type: PathPrefix
-                value: /
-          backendRefs:
-            - group: ""
-              kind: Service
-              name: ""
-              port: 80
-              weight: 1
-          sessionPersistence: {}
-          filters: []
-      #    timeouts: {}
-      #    retry: {}
-      # filters:
-      #   - type: CORS
-      #     cors:
-      #       allowCredentials: true
-      #       allowOrigins:
-      #         - "*"
-      #       allowMethods:
-      #         - GET
-      #         - POST
-      #         - OPTIONS
-      #         - HEAD
-      #         - PUT
-      #       allowHeaders:
-      #         - api-key
-      #         - app-key
-      #         - app-id
-      #         - web-api-key
-      #         - Authorization
-      #         - Grpc-Metadata-api-key
-      #         - Grpc-Metadata-app-key
-      #         - Grpc-Metadata-app-id
-      #         - Grpc-Metadata-web-api-key
-      #         - Grpc-Metadata-Authorization
-      #         - keep-alive
-      #         - user-agent
-      #         - cache-control
-      #         - content-type
-      #         - content-transfer-encoding
-      #         - custom-header-1
-      #         - x-accept-content-transfer-encoding
-      #         - x-accept-response-streaming
-      #         - x-user-agent
-      #         - x-grpc-web
-      #         - grpc-timeout
-      #       exposeHeaders:
-      #         - grpc-status
-      #         - grpc-message
-      #         - Grpc-Trailer-App-Id
-      #       maxAge: 600  # seconds (CORS preflight cache)
+  hostnames:
+    - "grpc-service.example.com"
+  rules:
+    - backendRefs:
+        - group: ""
+          kind: "Service"
+          weight: 1
+          name: ""
+          port: 8080
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
 
 grpcRoute:
   enabled: false
