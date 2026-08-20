@@ -123,24 +123,31 @@ affinity: {}
 
 httpRoute:
   enabled: false
+
   parentRefs:
     - name: envoygateway
       kind: Gateway
       namespace: default
-  hostnames:
-    - "grpc-service.example.com"
-  rules:
-    - backendRefs:
-        - group: ""
-          kind: "Service"
-          weight: 1
-          name: ""
-          port: 8080
-      matches:
-        - path:
-            type: PathPrefix
-            value: /
-      filters: []
+
+  routes:
+    - name: default
+      hostnames:
+        - "web-service.example.com"
+      rules:
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /
+          backendRefs:
+            - group: ""
+              kind: Service
+              name: ""
+              port: 80
+              weight: 1
+          sessionPersistence: {}
+          filters: []
+      #    timeouts: {}
+      #    retry: {}
       # filters:
       #   - type: CORS
       #     cors:

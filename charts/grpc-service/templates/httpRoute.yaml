@@ -1,12 +1,14 @@
-{{- if .Values.httpRoute.enabled -}}
+{{- if .Values.httpRoute.enabled }}
+{{- range $route := .Values.httpRoute.routes }}
+---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: {{ include "grpc-service.fullname" . }}
+  name: {{ include "grpc-service.fullname" $ }}-{{ $route.name }}
   labels:
-    {{- include "grpc-service.labels" . | nindent 4 }}
+    {{- include "grpc-service.labels" $ | nindent 4 }}
 spec:
-  {{- with .Values.httpRoute.parentRefs }}
+  {{- with $.Values.httpRoute.parentRefs }}
   parentRefs:
     {{- range . }}
     - name: {{ .name }}
@@ -16,13 +18,15 @@ spec:
       {{- end }}
     {{- end }}
   {{- end }}
-  {{- with .Values.httpRoute.hostnames }}
+
+  {{- with $route.hostnames }}
   hostnames:
     {{- range . }}
     - {{ . | quote }}
     {{- end }}
   {{- end }}
-  {{- with .Values.httpRoute.rules }}
+
+  {{- with $route.rules }}
   rules:
     {{- range . }}
     -
@@ -37,17 +41,18 @@ spec:
           {{- end }}
           {{- with .headers }}
           headers:
-            {{- toYaml . | nindent 10 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- with .queryParams }}
           queryParams:
-            {{- toYaml . | nindent 10 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- with .method }}
           method: {{ . }}
           {{- end }}
         {{- end }}
       {{- end }}
+
       {{- with .backendRefs }}
       backendRefs:
         {{- range . }}
@@ -58,22 +63,27 @@ spec:
           weight: {{ .weight | default 1 }}
         {{- end }}
       {{- end }}
+
       {{- with .filters }}
       filters:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+
       {{- with .timeouts }}
       timeouts:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+
       {{- with .retry }}
       retry:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+
       {{- with .sessionPersistence }}
       sessionPersistence:
         {{- toYaml . | nindent 8 }}
       {{- end }}
     {{- end }}
   {{- end }}
+{{- end }}
 {{- end }}
