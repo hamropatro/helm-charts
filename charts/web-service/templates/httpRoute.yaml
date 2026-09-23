@@ -51,7 +51,7 @@ spec:
         - group: {{ .group | default "" | quote }}
           kind: {{ .kind | quote }}
           name: {{ .name | default (include "web-service.fullname" $) }}
-          port: {{ .port | default $.Values.service.port }}
+          port: {{ .port | default ($.Values.service.port | default (index $.Values.service.ports 0).port) }}
           weight: {{ .weight | default 1 }}
         {{- end }}
 

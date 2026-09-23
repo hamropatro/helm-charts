@@ -7,10 +7,24 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
+    {{- if .Values.service.targetPort }}
+    - port: {{ .Values.service.port | default 80 }}
       targetPort: {{ .Values.service.targetPort }}
       protocol: TCP
       name: http
+    {{- else if .Values.service.port }}
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort | default .Values.service.port }}
+      protocol: TCP
+      name: http
+    {{- else if .Values.service.ports }}
+    {{- range .Values.service.ports }}
+    - port: {{ .port }}
+      targetPort: {{ .targetPort | default .port }}
+      protocol: {{ .protocol | default "TCP" }}
+      name: {{ .name }}
+    {{- end }}
+    {{- end }}
     {{- if .Values.metric.enabled }}
     - port: {{ .Values.metric.port }}
       protocol: TCP

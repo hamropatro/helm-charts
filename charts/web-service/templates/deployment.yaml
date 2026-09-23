@@ -59,9 +59,21 @@ spec:
                   key: {{ $key }}
             {{- end }}
           ports:
+            {{- if .Values.service.targetPort }}
             - name: http
-              containerPort: {{ .Values.service.targetPort}}
+              containerPort: {{ .Values.service.targetPort }}
               protocol: TCP
+            {{- else if .Values.service.port }}
+            - name: http
+              containerPort: {{ .Values.service.targetPort | default .Values.service.port }}
+              protocol: TCP
+            {{- else if .Values.service.ports }}
+            {{- range .Values.service.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .targetPort | default .port }}
+              protocol: {{ .protocol | default "TCP" }}
+            {{- end }}
+            {{- end }}
           {{- if .Values.metric.enabled }}
             - protocol: TCP
               name: metric
