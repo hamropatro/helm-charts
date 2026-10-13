@@ -93,11 +93,6 @@ spec:
                   name: {{ $.Release.Name }}-secrets
                   key: {{ $key }}
             {{- end }}
-          {{- if .Values.envConfigMap }}
-          envFrom:
-          - configMapRef:
-              name: {{ .Values.envConfigMap }}
-          {{- end }}
           {{- if .Values.grpcs.enabled }}
             - name: TLS_ENABLED
               value: "true"
@@ -105,6 +100,19 @@ spec:
               value: /config/tls.crt
             - name: TLS_KEY
               value: /config/tls.pkcs8
+          {{- end }}
+          {{- if or .Values.envConfigMap .Values.existingSecretEnv }}
+          # Every key of the existingSecretEnv Secrets (made by hand, same
+          # namespace) becomes an env var, so passwords stay out of git.
+          envFrom:
+            {{- with .Values.envConfigMap }}
+            - configMapRef:
+                name: {{ . }}
+            {{- end }}
+            {{- range .Values.existingSecretEnv }}
+            - secretRef:
+                name: {{ . }}
+            {{- end }}
           {{- end }}
           ports:
           {{- if .Values.http.enabled }}
