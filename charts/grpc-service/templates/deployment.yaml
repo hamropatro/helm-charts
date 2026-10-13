@@ -109,6 +109,15 @@ spec:
             - name: TLS_KEY
               value: /config/tls.pkcs8
           {{- end }}
+          {{- with .Values.existingSecretEnv }}
+          # Every key of the existingSecretEnv Secrets (made by hand, same
+          # namespace) becomes an env var, so passwords stay out of git.
+          envFrom:
+            {{- range . }}
+            - secretRef:
+                name: {{ . }}
+            {{- end }}
+          {{- end }}
           ports:
           {{- if .Values.http.enabled }}
             - protocol: TCP

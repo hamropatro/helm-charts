@@ -227,3 +227,8 @@ dnsConfig: {}
 
 # Static /etc/hosts entries, for the same class of problem when ndots is not enough.
 hostAliases: []
+
+# Names of existing Kubernetes Secrets (same namespace) whose keys are added as
+# environment variables (envFrom). Create them by hand; keep passwords out of
+# git and out of secretenv. Example: existingSecretEnv: ["hamropay-scylla"]
+existingSecretEnv: []
