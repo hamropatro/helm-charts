@@ -132,3 +132,8 @@ httpRoute:
         - path:
             type: PathPrefix
             value: /
+
+# Names of existing Kubernetes Secrets (same namespace) whose keys are added as
+# environment variables (envFrom). Create them by hand; keep passwords out of
+# git and out of secretenv. Example: existingSecretEnv: ["pepcheck-db"]
+existingSecretEnv: []

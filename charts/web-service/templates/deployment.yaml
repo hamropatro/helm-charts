@@ -58,6 +58,15 @@ spec:
                   name: {{ $.Release.Name }}-secrets
                   key: {{ $key }}
             {{- end }}
+          {{- with .Values.existingSecretEnv }}
+          # Every key of these hand-made Secrets becomes an env var, so
+          # passwords stay out of git and out of the HelmChart values.
+          envFrom:
+            {{- range . }}
+            - secretRef:
+                name: {{ . }}
+            {{- end }}
+          {{- end }}
           ports:
             {{- if .Values.service.targetPort }}
             - name: http
