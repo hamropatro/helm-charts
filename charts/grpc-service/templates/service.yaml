@@ -4,6 +4,12 @@ metadata:
   name: {{ include "grpc-service.fullname" . }}
   labels:
     {{- include "grpc-service.labels" . | nindent 4 }}
+  {{- with .Values.service.annotations }}
+  annotations:
+    {{- range $k, $v := . }}
+    {{ $k }}: {{ $v | quote }}
+    {{- end }}
+  {{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:

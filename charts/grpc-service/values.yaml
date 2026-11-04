@@ -71,6 +71,11 @@ readiness:
   timeoutSeconds: 1
 service:
   type: ClusterIP
+  # Extra Service annotations, e.g. Contour circuit breakers:
+  #   projectcontour.io/max-connections: "10000"
+  #   projectcontour.io/max-pending-requests: "10000"
+  #   projectcontour.io/max-requests: "10000"
+  annotations: {}
   port: 80
   targetPort: 80
 
