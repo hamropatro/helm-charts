@@ -45,6 +45,16 @@ entries:
   grpc-service:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-11-04T05:49:55.536142067Z"
+    description: A Helm chart for Kubernetes
+    digest: b5048ae8d7d9914b6691a3e5492b03035420d43cce56b4562807f4c2f8974b4e
+    name: grpc-service
+    type: application
+    urls:
+    - https://github.com/hamropatro/helm-charts/releases/download/grpc-service-0.3.13/grpc-service-0.3.13.tgz
+    version: 0.3.13
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-13T18:06:44.848049413Z"
     description: A Helm chart for Kubernetes
     digest: 584dc79cdc29081e2db8c016f4c9afed6a49ea8fd2b8b19cae19b40064fabfff
@@ -373,4 +383,4 @@ entries:
     urls:
     - https://github.com/hamropatro/helm-charts/releases/download/web-service-0.3.4/web-service-0.3.4.tgz
     version: 0.3.4
-generated: "2026-10-13T18:06:45.257950803Z"
+generated: "2026-11-04T05:49:55.536184681Z"
